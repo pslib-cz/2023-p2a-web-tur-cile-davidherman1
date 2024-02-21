@@ -8,30 +8,110 @@ html {
     text-align: center;
     padding: 1em;
     margin-bottom: 1em;;
+    background-image: url(../images/egypt.jpg);
+    background-size:cover;
+    
+}
+header {
+    color: wheat;
+}
+.heading {
+    text-wrap: nowrap;
 }
 .categories {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     /* použijte auto-fit s šířkou sloupce minimálně 300px */
     padding: 1em;
     gap: 1em;
+    
 }
-.categories__item {
+
+
+  
+  /* Media query pro zachování stejné velikosti obrázků po dosažení šířky 300px */
+  .categories__item {
     position: relative;
     color: inherit;
-    /* max-height: 80vh; */
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform .25s ease;
+   
+   
 }
 .categories__item:hover {
-    box-shadow: 0 0 8px 2px var(--text-light);
+    transform: scale(1.07);
+
 }
+
+.categories__item:hover .categories__item-image {
+    transform: scale(1.2);
+
+}
+
+.categories:hover > .categories__item:not(:hover){
+filter: blur(5px);
+transition: filter 1s ease;
+}
+
 .categories__item-image {
     filter: brightness(0.9) saturate(1) contrast(1);
+    border-radius: 10px;
+    transition: transform 2s ease;
+}
+
+ .categories__item:hover .categories__item-description {
+    top: 87%;
+    left:0%;
+    animation: center1 3s ease forwards;
+ }
+ 
+ .categories__item:not(:hover) .categories__item-description {
+    animation: return-center1 3s ease forwards;
+}
+
+ 
+ @keyframes center1 {
+     0% {
+         transform: none;
+         top: 87%;
+         left: 0;    
+     }
+     100% {
+         transform: translate(-50%, -50%);
+         top: 62%;
+         left: 50%;
+     }
+ }
+
+
+ @keyframes return-center1 {
+    0% {
+        transform: translate(-50%, -50%);
+        top: 62%;
+        left: 50%;  
+    }
+    100% {
+        transform: none;
+        top: 87%;
+        left: 0;
+    }
 }
 .categories__item-description {
+    margin: 0;
     padding: 1em;
     color: var(--text-light);
+    color: white;
+    font-size: 80%; 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: top 1s, left 1s;
+    
 }
+  
 /* TODO */
 
 
